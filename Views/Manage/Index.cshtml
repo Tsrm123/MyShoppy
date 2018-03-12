@@ -1,0 +1,76 @@
+﻿@model IdentitySample.Models.IndexViewModel
+@{
+    ViewBag.Title = "Account management";
+}
+
+<h2>@ViewBag.Title</h2>
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div class="row">
+    <div class="col-md-8">
+        <p>
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Change Password", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Set Password", "SetPassword")
+            }
+        </p>
+        <p>
+            
+            Contact number: @(Model.PhoneNumber ?? "No") [
+            @if (Model.PhoneNumber != null)
+            {
+                @Html.ActionLink("Change contact phone number", "AddPhoneNumber")
+                @: &nbsp;|&nbsp;
+                @Html.ActionLink("Remove contact phone", "RemovePhoneNumber")
+            }
+            else
+            {
+                @Html.ActionLink("Add a contact phone", "AddPhoneNumber")
+            }
+            ]
+        </p>
+        <p>
+            Third-party login @Model.Logins.Count
+            @Html.ActionLink("[Management]", "ManageLogins")
+        </p>
+        @if (Model.TwoFactor)
+        {
+            <form method="post" action="/Manage/DisableTFA">
+                <p>
+                    Dual verification is enabled
+                    <input type="submit" value="Disabled" class="btn btn-default" />
+                </p>
+            </form>
+        }
+        else
+        {
+            <form method="post" action="/Manage/EnableTFA">
+                <p>
+                    Dual authentication is not enabled
+                    <input type="submit" value="Enable" class="btn btn-default" />
+                </p>
+            </form>
+        }
+        @if (Model.BrowserRemembered)
+        {
+            <form method="post" action="/Manage/ForgetBrowser">
+                <p>
+                    The browser has remembered your double verification
+                    <input type="submit" value="Cancel my verification" class="btn btn-default" />
+                </p>
+            </form>
+        }
+        else
+        {
+            <form method="post" action="/Manage/RememberBrowser">
+                <p>
+                    The browser has not remembered your double verification
+                    <input type="submit" value="Remember my verification" class="btn btn-default" />
+                </p>
+            </form>
+        }
+    </div>
+</div>

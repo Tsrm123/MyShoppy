@@ -1,0 +1,41 @@
+﻿@model IdentitySample.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>user</h4>
+    <hr />
+    <p> @Html.DisplayFor(model => model.UserName)</p> 
+</div>
+<br />
+<h4>
+    Have permission
+</h4>
+@if (ViewBag.RoleNames.Count == 0)
+{
+    <hr />
+    <p>No special rights</p>
+}
+
+<table class="table">
+
+    @foreach (var item in ViewBag.RoleNames)
+    {
+        <tr>
+            <td>
+                @item
+            </td>
+        </tr>
+    }
+</table>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Return management", "Index")
+</p>
+
+
+

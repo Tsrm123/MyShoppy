@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WecareMVC.Models.OrderDetail>
+
+@{
+    ViewBag.Title = "Order confirmation completed!";
+}
+
+<h2 class="text-info">Order details</h2>
+<h3 class="text-success">Thank you for your support and welcome to visit us again. Your order number is: @Model.FirstOrDefault().OrderId</h3>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Album.Title)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Order.Username)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.UnitPrice)*@
+            小計
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Album.Title)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Order.Username)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+           $ @item.UnitPrice
+        </td>  
+        <td>
+            @((item.UnitPrice*item.Quantity).ToString("c2"))
+        </td> 
+              
+    </tr>
+}
+    <tr>
+        <td>total</td>
+        <td></td>
+        <td>Original price</td>
+        <td style="text-decoration:line-through">@Model.Sum(o=>o.UnitPrice*o.Quantity).ToString("c2")</td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td class="text-danger h4">discount price</td>
+        <td class="text-danger h4">@ViewBag.total.ToString("c2")</td>
+    </tr>
+
+</table>
+
+<p>
+    Browse more Title：
+    @Html.ActionLink("Store", "Index", "Home")
+</p>

@@ -1,0 +1,17 @@
+﻿@model WecareMVC.Models.Album
+@{
+    ViewBag.Title = "TitleOK to delete new";
+}
+<h2>Title Delete confirmation</h2>
+<p>
+    OK to delete this Title for You？
+    <strong>@Model.Title</strong>?
+</p>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="delete" />
+    </p>
+    <p>
+        @Html.ActionLink("Title Management", "Index")
+    </p>
+}

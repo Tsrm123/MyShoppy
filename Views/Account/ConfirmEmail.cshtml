@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Mailbox authentication";
+}
+
+<h2>@ViewBag.Title.</h2>
+<div>
+    <p>
+        Your mailbox has been certified @Html.ActionLink("Please click here to login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+    </p>
+</div>

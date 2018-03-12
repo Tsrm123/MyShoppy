@@ -1,0 +1,27 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+
+@{
+    ViewBag.Title = "OK to delete new權限";
+}
+
+<h2>OK to delete new權限</h2>
+
+<h3>確定OK to delete new? </h3>
+<p><em>這個動作將OK to delete new所有此權限，但不會OK to delete new使用者</em></p>
+<div>
+    <h4>權限</h4>
+    <hr />
+    <dl class="dl-horizontal text-left"> 
+            名稱：    
+            @Html.DisplayFor(model => model.Name) 
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="OK to delete new" class="btn btn-default" /> |
+            @Html.ActionLink("回到權限管理", "Index")
+        </div>
+    }
+</div>
