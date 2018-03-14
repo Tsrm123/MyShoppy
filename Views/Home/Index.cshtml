@@ -45,7 +45,7 @@
 
 @*begin top 5 sales*@
 <div class="row">
-    <h3 class="text-danger col-xs-12">Top5 Products</h3>
+    <h3 class="text-danger col-xs-12">Top5 ArtWorks</h3>
     @helper Truncate(string input, int length)
 {
     if (input.Length <= length)
@@ -63,28 +63,30 @@
         <div class="col-sm-4 col-lg-4 col-md-4">
             <div class="thumbnail">
                 @*style="max-height:400px !important">*@
-                <img alt="@album.Title" src="@album.AlbumArtUrl" />
-                @*<img src="~/App_Data/Images/善存.jpg" />*@
-                <div class="caption">
-                    <h4 class="pull-right text-success"><s>$ @(album.Price +3)</s></h4>
-                    <h4>
-                        <a href="@Url.Action("Details", "Store", new { id = album.AlbumId })">
-                            @Truncate(album.Title, 10)
-                        </a>
-                    </h4>
-                    @*<p>作者：@Truncate(album.Artist.Name, 25)</p>*@
-                    <h3 class="text-danger">Price：$ @(album.Price)</h3>
-                </div>
-                <div class="ratings">
-                    <p class="pull-right">Quantity：@album.OrderDetails.Sum(o => o.Quantity) Pieces</p>
-                    <p>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                    </p>
-                </div>
+                <a href="@Url.Action("Details", "Store", new { id = album.AlbumId })">
+                    <img alt="@album.Title" src="@album.AlbumArtUrl" />
+                </a>
+                    @*<img src="~/App_Data/Images/善存.jpg" />*@
+                    <div class="caption">
+                        <h4 class="pull-right text-success"><s>$ @(album.Price + 3)</s></h4>
+                        <h4>
+                            <a href="@Url.Action("Details", "Store", new { id = album.AlbumId })">
+                                @Truncate(album.Title, 10)
+                            </a>
+                        </h4>
+                        @*<p>作者：@Truncate(album.Artist.Name, 25)</p>*@
+                        <h3 class="text-danger">Price：$ @(album.Price)</h3>
+                    </div>
+                    <div class="ratings">
+                        <p class="pull-right">Quantity：@album.OrderDetails.Sum(o => o.Quantity)</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                        </p>
+                    </div>
             </div>
         </div>
     }
